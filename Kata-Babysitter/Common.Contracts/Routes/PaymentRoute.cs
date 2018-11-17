@@ -12,6 +12,7 @@ namespace Common.Contracts.Routes
 
         public const string Calculate = "Calculate";
 
+        public const string Test = "Test";
         public static string GetAPIRoute(string route)
         {
             return $"{Route_Prefix}/{route}";

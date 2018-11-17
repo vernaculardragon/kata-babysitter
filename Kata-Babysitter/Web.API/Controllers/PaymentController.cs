@@ -17,6 +17,8 @@ namespace Web.API.Controllers
      
 
         // GET api/values
+        [HttpGet]
+        [Route(PaymentRoute.Test)]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
