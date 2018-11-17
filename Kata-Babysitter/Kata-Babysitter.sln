@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Utilities", "Common.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabySitter.BL", "BabySitter.BL\BabySitter.BL.csproj", "{83CDD463-25F8-442F-A2FE-98F0D4BB525D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalcTest", "CalcTest\CalcTest.csproj", "{4FC8F7CE-F059-46D0-A9FE-627D21F886EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{83CDD463-25F8-442F-A2FE-98F0D4BB525D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83CDD463-25F8-442F-A2FE-98F0D4BB525D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83CDD463-25F8-442F-A2FE-98F0D4BB525D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FC8F7CE-F059-46D0-A9FE-627D21F886EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FC8F7CE-F059-46D0-A9FE-627D21F886EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FC8F7CE-F059-46D0-A9FE-627D21F886EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FC8F7CE-F059-46D0-A9FE-627D21F886EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
