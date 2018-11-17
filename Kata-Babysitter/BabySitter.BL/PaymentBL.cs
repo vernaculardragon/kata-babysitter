@@ -11,16 +11,13 @@ namespace BabySitter.BL
     public class PaymentBL
     {
         private DateTime _bedTime;
-
         private DateTime _ShiftDate;
-        public PaymentBL(DateTime BedTime)
-        {
-            _bedTime = BedTime;
-            _ShiftDate = BedTime.Date;
 
-        }
+      
         public Payment CalcAmountOwed(Payment Hours)
         {
+            _bedTime = Hours.BedTime;
+            _ShiftDate = Hours.BedTime.Date;
             decimal Owed = 0;
             var ShiftTime = Hours.StartDateTime;
 

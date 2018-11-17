@@ -18,7 +18,7 @@ namespace CalcTest
                 EndDateTime = DateTime.Now.Date.AddDays(1).AddHours(4)
             };
 
-            var paymentBL = new PaymentBL(Payment.BedTime);
+            var paymentBL = new PaymentBL();
             var final = paymentBL.CalcAmountOwed(Payment);
 
            // 3hrs pre bed - 3*12 = 36
