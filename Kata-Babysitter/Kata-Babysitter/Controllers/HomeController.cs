@@ -17,14 +17,14 @@ namespace Kata_Babysitter.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-
-          
             return View(new Payment());
         }
 
         [HttpPost]
         public ActionResult Index(Payment Hours)
         {
+
+
             var client = new HttpClient();
             client.BaseAddress = new Uri("http://localhost:58154/");
             var response = client.GetAsync(PaymentRoute.GetAPIRoute(PaymentRoute.Test));
