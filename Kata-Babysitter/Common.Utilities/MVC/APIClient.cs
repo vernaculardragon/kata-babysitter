@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Common.Utilities.MVC
 {
@@ -25,6 +26,13 @@ namespace Common.Utilities.MVC
         {
             return APIResponse<T>.HandleRequest(_client.GetAsync(route).Result);
            
+        }
+
+        public APIResponse<T> Post<T,W>(string route,W Data)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(Data), Encoding.UTF8,"application/json");
+            return APIResponse<T>.HandleRequest(_client.PostAsync(route, content).Result);
+
         }
     }
 }

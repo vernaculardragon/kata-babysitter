@@ -16,15 +16,15 @@ namespace BabySitter.BL
       
         public Payment CalcAmountOwed(Payment Hours)
         {
-            _bedTime = Hours.BedTime;
-            _ShiftDate = Hours.BedTime.Date;
+            _bedTime = Hours.BedTime.Value;
+            _ShiftDate = Hours.BedTime.Value.Date;
             decimal Owed = 0;
             var ShiftTime = Hours.StartDateTime;
 
             while (ShiftTime < Hours.EndDateTime)
             {
-                var endTime = GetShiftEnd(ShiftTime, Hours.EndDateTime);
-                Owed += GetShiftAmount(ShiftTime, endTime, GetShiftRate(ShiftTime));
+                var endTime = GetShiftEnd(ShiftTime.Value, Hours.EndDateTime.Value);
+                Owed += GetShiftAmount(ShiftTime.Value, endTime, GetShiftRate(ShiftTime.Value));
                 ShiftTime = endTime;
             }
             Hours.AmountOwed = Owed;
@@ -39,7 +39,7 @@ namespace BabySitter.BL
             {
                 return _bedTime;
             }
-            else if (ShiftStart < _ShiftDate.AddDays(1).Date)
+            else if (ShiftStart < _ShiftDate.AddDays(1).Date && FinalEnd > _ShiftDate.AddDays(1).Date)
             {
                 return _ShiftDate.AddDays(1).Date;
             }
@@ -68,7 +68,7 @@ namespace BabySitter.BL
 
         private decimal GetShiftAmount(DateTime ShiftStart, DateTime ShiftEnd, decimal ShiftRate)
         {
-            var ShiftTime = ( ShiftEnd-ShiftStart).Hours;
+            var ShiftTime =(int) Math.Ceiling((ShiftEnd-ShiftStart).TotalMinutes/60);
             var Owed = ShiftRate * ShiftTime;
             return Owed;
 

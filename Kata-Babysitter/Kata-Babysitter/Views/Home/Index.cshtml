@@ -4,19 +4,61 @@
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>Kata - BabySitter</h1>
+    <p class="lead">Sample Application to caluclate Babysitter payment.</p>
 </div>
 
 <div class="row">
 
-    <div class="container">
-        <div class="row">
-            <div class='col-sm-6'>
-                <input type='text' class="form-control" id='datetimepicker3' />
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Babysitter Hours
             </div>
-           
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+            <div class="panel-body">
+
+                @Html.AntiForgeryToken()
+                <div class="col-md-12">
+                    <div>
+                        @Html.LabelFor(model => model.StartDateTime)
+                    </div>
+                    <div>
+                        @Html.EditorFor(model => model.StartDateTime, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(x => x.StartDateTime)
+                    </div>
+                  
+                    <div>
+                        @Html.LabelFor(model => model.BedTime)
+                    </div>
+                    <div>
+                        @Html.EditorFor(model => model.BedTime, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(x => x.BedTime)
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.EndDateTime)
+                    </div>
+                    <div>
+                        @Html.EditorFor(model => model.EndDateTime, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(x => x.EndDateTime)
+                    </div>
+                    
+                    @if (Model.AmountOwed > 0)
+                    {
+                        <div>
+                    <p class="h2">Amount Owed: <span>@Model.AmountOwed.ToString("C")</span></p>
+            </div>
+                    }
+                </div>
+
+                
+
+            </div>
+            <div class="panel-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        }
         </div>
     </div>
 
@@ -24,8 +66,10 @@
 @section Scripts{
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker3').datetimepicker({
-                format: 'LT'
+            $('.time').datetimepicker({
+                sideBySide: true,
+                useCurrent: true,
+                format: "MM/DD/YYYY h:00 a"
             });
         });
     </script>

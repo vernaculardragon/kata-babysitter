@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Common.Contracts.DataContracts;
 using Common.Contracts.Routes;
 using Common.Utilities.MVC;
+using Common.Utilities.Extensions;
 
 namespace Kata_Babysitter.Controllers
 {
@@ -21,16 +22,24 @@ namespace Kata_Babysitter.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+
         public ActionResult Index(Payment Hours)
         {
+            if (ModelState.IsValid)
+            {
+                ModelState.AddModelErrors(Hours.Validate());
 
+                if (ModelState.IsValid)
+                {
+                    var result =
+                        _client.Post<Payment, Payment>(PaymentRoute.GetAPIRoute(PaymentRoute.Calculate), Hours);
 
-            var client = new HttpClient();
-            client.BaseAddress = new Uri("http://localhost:58154/");
-            var response = client.GetAsync(PaymentRoute.GetAPIRoute(PaymentRoute.Test));
-
-
-            return View();
+                    return View(result.Result);
+                }
+            }
+           
+            return View(Hours);
         }
 
 

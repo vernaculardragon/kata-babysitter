@@ -26,7 +26,7 @@ namespace Web.API.Controllers
 
         [Route(PaymentRoute.Calculate)]
         [HttpPost]
-        public Payment CalculatePayment(Payment hours)
+        public Payment CalculatePayment([FromBody] Payment hours)
         {
             var BL = new PaymentBL();
             return BL.CalcAmountOwed(hours);
