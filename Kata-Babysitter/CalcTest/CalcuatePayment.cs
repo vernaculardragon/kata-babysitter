@@ -30,5 +30,27 @@ namespace CalcTest
             Assert.IsTrue(final.AmountOwed == 132);
 
         }
+        [TestMethod]
+        public void MidnightTest()
+        {
+            var Payment = new Payment
+            {
+                StartDateTime = DateTime.Now.Date.AddHours(17),
+                BedTime = DateTime.Now.Date.AddHours(24),
+                EndDateTime = DateTime.Now.Date.AddDays(1).AddHours(4)
+            };
+
+            var paymentBL = new PaymentBL();
+            var final = paymentBL.CalcAmountOwed(Payment);
+
+            // 3hrs pre bed - 7*12 = 84
+            //4hours post bed 0*8 = 0
+            //4 hours post midnight 4*16 = 64
+
+
+            // total money = 148
+            Assert.IsTrue(final.AmountOwed == 148);
+
+        }
     }
 }

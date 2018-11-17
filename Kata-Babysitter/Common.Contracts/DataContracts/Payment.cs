@@ -11,12 +11,15 @@ namespace Common.Contracts.DataContracts
     {
         [Required]
         [UIHint("Time")]
+        [Display(Name = "Start Time")]
         public DateTime? StartDateTime { get; set; }
         [UIHint("Time")]
         [Required]
+        [Display(Name = "Bed Time")]
         public DateTime? BedTime { get; set; }
         [UIHint("Time")]
         [Required]
+        [Display(Name = "End Time")]
         public DateTime? EndDateTime { get; set; }
 
         public decimal AmountOwed { get; set; }
@@ -29,6 +32,10 @@ namespace Common.Contracts.DataContracts
         {
             get { return StartDateTime.Value.Date.AddDays(1).AddHours(4); }
         }
+        public DateTime Midnight
+        {
+            get { return StartDateTime.Value.Date.AddDays(1); }
+        }
         public List<ValidationError> Validate()
         {
             var Errors = new List<ValidationError>();
@@ -39,7 +46,7 @@ namespace Common.Contracts.DataContracts
             }
             if (EndDateTime > LatestLeave)
             {
-                Errors.Add(new ValidationError(nameof(EndDateTime), $"End Time cannot be Earlier than {LatestLeave}"));
+                Errors.Add(new ValidationError(nameof(EndDateTime), $"End Time cannot be Later than {LatestLeave}"));
             }
             if (StartDateTime > BedTime)
             {
@@ -48,6 +55,10 @@ namespace Common.Contracts.DataContracts
             if (BedTime > EndDateTime)
             {
                 Errors.Add(new ValidationError(nameof(BedTime), $"Bed Time cannot be Later than End Time"));
+            }
+            if (BedTime > Midnight)
+            {
+                Errors.Add(new ValidationError(nameof(BedTime), $"Bed Time cannot be Later than Midnight"));
             }
             if (EndDateTime <= StartDateTime)
             {

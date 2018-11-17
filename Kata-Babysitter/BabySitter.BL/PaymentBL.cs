@@ -17,7 +17,7 @@ namespace BabySitter.BL
         public Payment CalcAmountOwed(Payment Hours)
         {
             _bedTime = Hours.BedTime.Value;
-            _ShiftDate = Hours.BedTime.Value.Date;
+            _ShiftDate = Hours.StartDateTime.Value.Date;
             decimal Owed = 0;
             var ShiftTime = Hours.StartDateTime;
 
