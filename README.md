@@ -16,3 +16,8 @@ The babysitter:
 *As a babysitter<br>
 In order to get paid for 1 night of work<br>
 I want to calculate my nightly charge<br>*
+
+To Test this application Load solution and Run all Tests (CTRL + R, A)
+
+To Run this application run the application in Debug mode from visual studio 
+	or https://websiterqcqwizgvsh5u.azurewebsites.net/ 
